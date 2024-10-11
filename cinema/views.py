@@ -61,7 +61,7 @@ class MovieViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(title__icontains=title)
 
         if self.action in ["list", "retrieve"]:
-            queryset =  queryset.prefetch_related("actors", "genres")
+            queryset = queryset.prefetch_related("actors", "genres")
 
         return queryset.distinct()
 
@@ -130,8 +130,8 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-    
-    def get_serializer_class(self): 	
+
+    def get_serializer_class(self):
         if self.action == "list":
             return OrderListSerializer
         return OrderSerializer
